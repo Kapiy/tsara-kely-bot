@@ -7,79 +7,93 @@ app.use(express.json());
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN || "tsarakely_verify_2024";
 
-const rules = [
-  {
-    keywords: ["prix", "cout", "combien", "tarif", "cher"],
-    response: `Bonjour ! 🌸 Voici nos prix :\n\n• Cache tétons Rond — 6 000 Ar\n• Cache tétons Pétale de fleurs — 6 000 Ar\n\nTous nos produits sont réutilisables et très discrets 💕\nVoulez-vous voir nos modèles ?`
-  },
-  {
-    keywords: ["modele", "collection", "produit", "choix", "type", "couleur"],
-    response: `Nous avons 2 modèles disponibles 🌸\n\n⭕ Rond — discret, idéal sous toutes vos tenues\n🌺 Pétale de fleurs — élégant et féminin\n\nLes deux sont en silicone réutilisable.\nEnvoyez-nous un message pour voir les photos ! 📸`
-  },
-  {
-    keywords: ["commander", "acheter", "commande", "vouloir"],
-    response: `Pour passer votre commande 😊\n\n1️⃣ Choisissez votre modèle\n2️⃣ Envoyez-nous un message\n3️⃣ Confirmez quantité et adresse\n4️⃣ Effectuez le paiement\n5️⃣ Recevez votre colis ! 🎁`
-  },
-  {
-    keywords: ["livraison", "expedition", "livrer", "envoyer", "recevoir"],
-    response: `🚚 Livraison disponible à Antananarivo !\n\nChoisissez votre zone en répondant :\n👉 1 — Zone Ville (3 000 Ar)\n👉 2 — Zone Périphérie (3 000 Ar)\n👉 3 — Zone Super-Périphérie (5 000 Ar)`
-  },
-  {
-    keywords: ["zone ville", "choix 1", "option 1", "1"],
-    response: `🏙️ Zone Ville — 3 000 Ar\n\nAnalamahitsy, Androhibe, Mahazo, Mandroseza Pont, Saropody Pont, Tanjombato Pont, Ampasika, Andranomena, Soavimasoandro\n\n📦 Livraison à domicile · Emballage discret 💕`
-  },
-  {
-    keywords: ["zone peripherie", "peripherie", "choix 2", "option 2", "2"],
-    response: `🌆 Zone Périphérie — 3 000 Ar\n\nAnkadikely Ilafy, Ambohimahitsy, Tanjombato Forello, Iavoloha, Anosizato, Itaosy, Talatamaty, Ivato Aéroport\n\n📦 Livraison à domicile · Emballage discret 💕`
-  },
-  {
-    keywords: ["super peripherie", "choix 3", "option 3", "3"],
-    response: `🌿 Zone Super-Périphérie — 5 000 Ar\n\nAnosy Avaratra, Namehana, Ambohitrinimanga, Lazaina, Ambohibe Ilafy, Ambohimangakely, Alasora, Ambohimanambola, Dorodosy, Soavina, Bevalala\n\n📦 Livraison à domicile · Emballage discret 💕`
-  },
-  {
-    keywords: ["paiement", "payer", "mvola", "airtel", "orange"],
-    response: `💳 Modes de paiement acceptés :\n\n📱 MVola\n📱 Airtel Money\n📱 Orange Money\n💵 En main propre (Antananarivo)\n\nPaiement demandé à la confirmation 🌸`
-  },
-  {
-    keywords: ["taille", "dimension", "mesure"],
-    response: `Nos cache tétons sont en taille standard 🌸\n\n📏 Diamètre : 6 cm\n\nLe silicone est souple et s'adapte à toutes les morphologies 💕`
-  },
-  {
-    keywords: ["utiliser", "utilisation", "coller", "tenir"],
-    response: `Comment utiliser vos cache tétons 🌸\n\n1. Nettoyez et séchez la peau\n2. Retirez le film protecteur\n3. Appliquez en centrant bien\n4. Appuyez doucement\n\n✨ Rincez à l'eau froide pour réutiliser`
-  },
-  {
-    keywords: ["bonjour", "salut", "bonsoir", "hello", "hi", "hey"],
-    response: `Bonjour et bienvenue chez Tsara Kely 🌸✨\n\nNous proposons des cache tétons discrets et élégants !\n\nÉcrivez :\n💰 prix\n👙 modèles\n🛒 commander\n🚚 livraison\n💳 paiement`
-  },
-  {
-    keywords: ["merci", "parfait", "super", "genial", "ok"],
-    response: `Avec plaisir ! 😊🌸 Bonne journée ! 💕`
-  },
-  {
-    keywords: ["retour", "remboursement", "echange", "probleme"],
-    response: `Votre satisfaction est notre priorité 🌸\n\nContactez-nous dans les 48h avec une photo du problème et nous trouverons une solution ensemble 💕`
-  }
-];
-
-const defaultResponse = `Merci pour votre message ! 🌸\n\nÉcrivez l'un de ces mots :\n💰 prix\n👙 modèles\n🛒 commander\n🚚 livraison\n💳 paiement\n\nNotre équipe vous répondra très bientôt ! 💕`;
-
-function findResponse(text) {
-  const t = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9\s]/g, " ");
-  for (const rule of rules) {
-    if (rule.keywords.some(k => t.includes(k))) return rule.response;
-  }
-  return defaultResponse;
-}
-
-async function sendMessage(recipientId, text) {
+async function sendMessage(recipientId, text, quickReplies = null) {
+  const message = { text };
+  if (quickReplies) message.quick_replies = quickReplies;
   try {
     await axios.post(
       `https://graph.facebook.com/v18.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`,
-      { recipient: { id: recipientId }, message: { text } }
+      { recipient: { id: recipientId }, message }
     );
   } catch (err) {
     console.error("Erreur:", err.response?.data || err.message);
+  }
+}
+
+const mainMenu = [
+  { content_type: "text", title: "💰 Prix", payload: "PRIX" },
+  { content_type: "text", title: "👙 Modèles", payload: "MODELES" },
+  { content_type: "text", title: "🛒 Commander", payload: "COMMANDER" },
+  { content_type: "text", title: "🚚 Livraison", payload: "LIVRAISON" },
+  { content_type: "text", title: "💳 Paiement", payload: "PAIEMENT" }
+];
+
+const livraisonMenu = [
+  { content_type: "text", title: "🏙️ Zone Ville", payload: "VILLE" },
+  { content_type: "text", title: "🌆 Périphérie", payload: "PERIPHERIE" },
+  { content_type: "text", title: "🌿 Super-Périphérie", payload: "SUPER" }
+];
+
+async function handleMessage(senderId, text) {
+  const t = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9\s]/g, " ");
+
+  if (t.includes("bonjour") || t.includes("salut") || t.includes("hello") || t.includes("bonsoir") || t.includes("hi")) {
+    await sendMessage(senderId,
+      `Bonjour et bienvenue chez Tsara Kely 🌸✨\n\nNous proposons des cache tétons discrets et élégants !\n\nComment puis-je vous aider ?`,
+      mainMenu
+    );
+  } else if (t.includes("prix") || t.includes("cout") || t.includes("combien") || t.includes("tarif")) {
+    await sendMessage(senderId,
+      `Bonjour ! 🌸 Voici nos prix :\n\n• Cache tétons Rond — 6 000 Ar\n• Cache tétons Pétale de fleurs — 6 000 Ar\n\nTous réutilisables et très discrets 💕`,
+      mainMenu
+    );
+  } else if (t.includes("modele") || t.includes("collection") || t.includes("produit")) {
+    await sendMessage(senderId,
+      `Nous avons 2 modèles 🌸\n\n⭕ Rond — discret, idéal sous toutes vos tenues\n🌺 Pétale de fleurs — élégant et féminin\n\nSilicone réutilisable, teintes chair et nude 💕`,
+      mainMenu
+    );
+  } else if (t.includes("commander") || t.includes("acheter") || t.includes("commande")) {
+    await sendMessage(senderId,
+      `Pour commander 😊\n\n1️⃣ Choisissez votre modèle\n2️⃣ Envoyez-nous un message\n3️⃣ Confirmez quantité et adresse\n4️⃣ Effectuez le paiement\n5️⃣ Recevez votre colis ! 🎁`,
+      mainMenu
+    );
+  } else if (t.includes("livraison") || t.includes("livrer") || t.includes("expedition")) {
+    await sendMessage(senderId,
+      `🚚 Livraison disponible à Antananarivo !\n\nChoisissez votre zone :`,
+      livraisonMenu
+    );
+  } else if (t.includes("zone ville") || t.includes("ville")) {
+    await sendMessage(senderId,
+      `🏙️ Zone Ville — 3 000 Ar\n\nAnalamahitsy, Androhibe, Mahazo, Mandroseza Pont, Saropody Pont, Tanjombato Pont, Ampasika, Andranomena, Soavimasoandro\n\n📦 Livraison à domicile · Emballage discret 💕`,
+      mainMenu
+    );
+  } else if (t.includes("super") || t.includes("super peripherie")) {
+    await sendMessage(senderId,
+      `🌿 Zone Super-Périphérie — 5 000 Ar\n\nAnosy Avaratra, Namehana, Ambohitrinimanga, Lazaina, Ambohibe Ilafy, Ambohimangakely, Alasora, Ambohimanambola, Dorodosy, Soavina, Bevalala\n\n📦 Livraison à domicile · Emballage discret 💕`,
+      mainMenu
+    );
+  } else if (t.includes("peripherie")) {
+    await sendMessage(senderId,
+      `🌆 Zone Périphérie — 3 000 Ar\n\nAnkadikely Ilafy, Ambohimahitsy, Tanjombato Forello, Iavoloha, Anosizato, Itaosy, Talatamaty, Ivato Aéroport\n\n📦 Livraison à domicile · Emballage discret 💕`,
+      mainMenu
+    );
+  } else if (t.includes("paiement") || t.includes("payer") || t.includes("mvola") || t.includes("airtel") || t.includes("orange")) {
+    await sendMessage(senderId,
+      `💳 Modes de paiement :\n\n📱 MVola\n📱 Airtel Money\n📱 Orange Money\n💵 En main propre (Antananarivo)\n\nPaiement à la confirmation 🌸`,
+      mainMenu
+    );
+  } else if (t.includes("taille") || t.includes("dimension")) {
+    await sendMessage(senderId,
+      `Taille standard 🌸\n\n📏 Diamètre : 6 cm\n\nLe silicone s'adapte à toutes les morphologies 💕`,
+      mainMenu
+    );
+  } else if (t.includes("merci") || t.includes("parfait") || t.includes("super") || t.includes("ok")) {
+    await sendMessage(senderId, `Avec plaisir ! 😊🌸 Bonne journée ! 💕`, mainMenu);
+  } else {
+    await sendMessage(senderId,
+      `Merci pour votre message ! 🌸\n\nComment puis-je vous aider ?`,
+      mainMenu
+    );
   }
 }
 
@@ -102,8 +116,9 @@ app.post("/webhook", async (req, res) => {
       if (!event) continue;
       const senderId = event.sender.id;
       if (event.message?.text) {
-        const response = findResponse(event.message.text);
-        await sendMessage(senderId, response);
+        await handleMessage(senderId, event.message.text);
+      } else if (event.postback?.payload) {
+        await handleMessage(senderId, event.postback.payload);
       }
     }
     res.status(200).send("EVENT_RECEIVED");
