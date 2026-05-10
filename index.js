@@ -44,7 +44,7 @@ async function handleMessage(senderId, text) {
     );
   } else if (t.includes("prix") || t.includes("cout") || t.includes("combien") || t.includes("tarif")) {
     await sendMessage(senderId,
-      `Bonjour ! 🌸 Voici nos prix :\n\n• Cache tétons Rond — 6 000 Ar\n• Cache tétons Pétale de fleurs — 6 000 Ar\n\nTous réutilisables et très discrets 💕`,
+      `Bonjour ! 🌸 Voici nos prix :\n\n• Cache tétons Rond — 7 000 Ar\n• Cache tétons Pétale de fleurs — 7 000 Ar\n\nTous réutilisables et très discrets 💕`,
       mainMenu
     );
   } else if (t.includes("modele") || t.includes("collection") || t.includes("produit")) {
