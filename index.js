@@ -39,7 +39,7 @@ async function handleMessage(senderId, text) {
 
   if (t.includes("bonjour") || t.includes("salut") || t.includes("hello") || t.includes("bonsoir") || t.includes("hi")) {
     await sendMessage(senderId,
-      `Bonjour et bienvenue chez Tsara Kely 🌸✨\n\nNous proposons des cache tétons discrets et élégants !\n\nVous pouvez cliquer sur les boutons en-dessous pour avoir plus d'informations sur les prix, commander, etc. \n\nNos caches tétons sont disponibles actuellement. \n\nLa livraison se fait à J+1 de la commande 🌸`,
+      `Bonjour et bienvenue chez Tsara Kely 🌸✨\n\nNous proposons des cache tétons discrets et élégants !\n\nVous pouvez cliquer sur les boutons en-dessous pour avoir plus d'informations. \n\nNos caches tétons sont disponibles actuellement. \n\nLa livraison se fait à J+1 de la commande 🌸`,
       mainMenu
     );
   } else if (t.includes("prix") || t.includes("cout") || t.includes("combien") || t.includes("tarif")) {
@@ -59,7 +59,7 @@ async function handleMessage(senderId, text) {
     );
   } else if (t.includes("livraison") || t.includes("livrer") || t.includes("expedition")) {
     await sendMessage(senderId,
-      `🚚 Livraison disponible à Antananarivo !\n\nChoisissez votre zone :`,
+      `🚚 Livraison disponible à Antananarivo et en provinces !\n\nLa livraison se fait à J+1 de la commande 🌸\n\nChoisissez votre zone :`,
       livraisonMenu
     );
   } else if (t.includes("zone ville") || t.includes("ville")) {
@@ -91,7 +91,7 @@ async function handleMessage(senderId, text) {
     await sendMessage(senderId, `Avec plaisir ! 😊🌸 Bonne journée ! 💕`, mainMenu);
   } else {
     await sendMessage(senderId,
-      `Merci pour votre message ! 🌸\n\nVous pouvez cliquer sur les boutons en-dessous pour avoir plus d'informations sur les prix, commander, etc. \n\nNos caches tétons sont disponibles actuellement. \n\nLa livraison se fait à J+1 de la commande 🌸`,
+      `Merci pour votre message ! 🌸\n\nVous pouvez cliquer sur les boutons en-dessous pour avoir plus d'informations. \n\nNos caches tétons sont disponibles actuellement 🌸. `,
       mainMenu
     );
   }
