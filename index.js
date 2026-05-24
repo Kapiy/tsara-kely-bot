@@ -39,7 +39,7 @@ async function handleMessage(senderId, text) {
 
   if (t.includes("bonjour") || t.includes("salut") || t.includes("hello") || t.includes("bonsoir") || t.includes("hi")) {
     await sendMessage(senderId,
-      `Bonjour et bienvenue chez Tsara Kely 🌸✨\n\nNous proposons des cache tétons discrets et élégants !\n\nComment puis-je vous aider ?`,
+      `Bonjour et bienvenue chez Tsara Kely 🌸✨\n\nNous proposons des cache tétons discrets et élégants !\n\nVous pouvez cliquer sur les boutons en-dessous pour avoir plus d'informations sur les prix, commander, etc. Nos caches tétons sont disponibles.`,
       mainMenu
     );
   } else if (t.includes("prix") || t.includes("cout") || t.includes("combien") || t.includes("tarif")) {
@@ -91,7 +91,7 @@ async function handleMessage(senderId, text) {
     await sendMessage(senderId, `Avec plaisir ! 😊🌸 Bonne journée ! 💕`, mainMenu);
   } else {
     await sendMessage(senderId,
-      `Merci pour votre message ! 🌸\n\nVous pouvez cliquer sur les boutons en-dessous pour avoir plus d'informations sur les prix, commander, etc.`,
+      `Merci pour votre message ! 🌸\n\nVous pouvez cliquer sur les boutons en-dessous pour avoir plus d'informations sur les prix, commander, etc. Nos caches tétons sont disponibles`,
       mainMenu
     );
   }
