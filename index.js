@@ -91,7 +91,7 @@ async function handleMessage(senderId, text) {
     await sendMessage(senderId, `Avec plaisir ! 😊🌸 Bonne journée ! 💕`, mainMenu);
   } else {
     await sendMessage(senderId,
-      `Merci pour votre message ! 🌸\n\nVous pouvez cliquer sur les boutons en-dessous pour avoir plus d'informations sur les prix, commander, etc. Nos caches tétons sont disponibles`,
+      `Merci pour votre message ! 🌸\n\nVous pouvez cliquer sur les boutons en-dessous pour avoir plus d'informations sur les prix, commander, etc. \n\nNos caches tétons sont disponibles actuellement. \n\nLa livraison se fait à J+1 de la commande 🌸`,
       mainMenu
     );
   }
