@@ -54,7 +54,7 @@ async function handleMessage(senderId, text) {
     );
   } else if (t.includes("commander") || t.includes("acheter") || t.includes("commande")) {
     await sendMessage(senderId,
-      `Pour commander 😊\n\n1️⃣ Choisissez votre modèle\n2️⃣ Envoyez-nous un message avec votre contact et lieu de livraison\n3️⃣ Confirmez quantité et adresse\n4️⃣ Effectuez le paiement\n5️⃣ Recevez votre colis ! 🎁`,
+      `Pour commander 😊\n\n1️⃣ Choisissez votre modèle\n2️⃣ Envoyez-nous un message avec votre contact et lieu de livraison\n3️⃣ Confirmez quantité et adresse\n4️⃣ Recevez votre colis ! 🎁\n5️⃣ Effectuez le paiement`,
       mainMenu
     );
   } else if (t.includes("livraison") || t.includes("livrer") || t.includes("expedition")) {
