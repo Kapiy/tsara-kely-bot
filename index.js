@@ -59,7 +59,7 @@ async function handleMessage(senderId, text) {
     );
   } else if (t.includes("livraison") || t.includes("livrer") || t.includes("expedition")) {
     await sendMessage(senderId,
-      `🚚 Livraison disponible à Antananarivo et en provinces !\n\nLa livraison se fait à J+1 de la commande 🌸\n\nChoisissez votre zone :`,
+      `🚚 Livraison disponible à Antananarivo et en provinces !\n\nLa livraison se fait à J+1 de la commande 🌸\n\nChoisissez votre zone ci-dessous. Si votre zone n'apparaît pas dans la liste, nous vous répondrons dans les plus brefs délais :`,
       livraisonMenu
     );
   } else if (t.includes("zone ville") || t.includes("ville")) {
