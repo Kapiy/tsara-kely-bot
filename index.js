@@ -73,22 +73,22 @@ if (!usersGreeted.has(senderId) || t.includes("bonjour") || t.includes("salut") 
     );
   } else if (t.includes("zone ville") || t.includes("ville")) {
     await sendMessage(senderId,
-      `🏙️ Zone Ville — 3 000 Ar\n\nAnalamahitsy, Androhibe, Mahazo, Mandroseza Pont, Saropody Pont, Tanjombato Pont, Ampasika, Andranomena, Soavimasoandro\n\n📦 Livraison à domicile · Emballage discret 💕`,
+      `🏙️ Zone Ville — 3 000 Ar\n\nAnalamahitsy, Androhibe, Mahazo, Mandroseza Pont, Saropody Pont, Tanjombato Pont, Ampasika, Andranomena, Soavimasoandro,...\n\n📦 Livraison à domicile · Emballage discret 💕`,
       mainMenu
     );
   } else if (t.includes("super") || t.includes("super peripherie")) {
     await sendMessage(senderId,
-      `🌿 Zone Super-Périphérie — 5 000 Ar\n\nAnosy Avaratra, Namehana, Ambohitrinimanga, Lazaina, Ambohibe Ilafy, Ambohimangakely, Alasora, Ambohimanambola, Dorodosy, Soavina, Bevalala\n\n📦 Livraison à domicile · Emballage discret 💕`,
+      `🌿 Zone Super-Périphérie — 5 000 Ar\n\nAnosy Avaratra, Namehana, Ambohitrinimanga, Lazaina, Ambohibe Ilafy, Ambohimangakely, Alasora, Ambohimanambola, Dorodosy, Soavina, Bevalala,...\n\n📦 Livraison à domicile · Emballage discret 💕`,
       mainMenu
     );
   } else if (t.includes("peripherie")) {
     await sendMessage(senderId,
-      `🌆 Zone Périphérie — 4 000 Ar\n\nAnkadikely Ilafy, Ambohimahitsy, Tanjombato Forello, Iavoloha, Anosizato, Itaosy, Talatamaty, Ivato Aéroport\n\n📦 Livraison à domicile · Emballage discret 💕`,
+      `🌆 Zone Périphérie — 4 000 Ar\n\nAnkadikely Ilafy, Ambohimahitsy, Tanjombato Forello, Iavoloha, Anosizato, Itaosy, Talatamaty, Ivato Aéroport,...\n\n📦 Livraison à domicile · Emballage discret 💕`,
       mainMenu
     );
   } else if (t.includes("paiement") || t.includes("payer") || t.includes("mvola") || t.includes("airtel") || t.includes("orange")) {
     await sendMessage(senderId,
-      `💳 Modes de paiement :\n\n📱 MVola\n📱 Airtel Money\n📱 Orange Money\n💵 En main propre (Antananarivo)\n\nPaiement à la confirmation 🌸`,
+      `💳 Modes de paiement :\n\n📱 MVola\n📱 Airtel Money\n📱 Orange Money\n💵 En main propre (Antananarivo)\n\nPaiement à la livraison ou à la confirmation si via Mobilemoney 🌸`,
       mainMenu
     );
   } else if (t.includes("taille") || t.includes("dimension")) {
