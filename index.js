@@ -97,7 +97,7 @@ async function handleMessage(senderId, text) {
       mainMenu
     );
   } else if (t.includes("merci") || t.includes("parfait") || t.includes("ok")) {
-    await sendMessage(senderId, Avec plaisir ! 😊🌸 Bonne journée ! 💕, mainMenu);
+    await sendMessage(senderId, `Avec plaisir ! 😊🌸 Bonne journée ! 💕`, mainMenu);
   } else {
     await sendMessage(senderId,
       `Vous pouvez cliquer sur les boutons en-dessous pour plus d'informations 👇`,
@@ -137,4 +137,4 @@ app.post("/webhook", async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(🌸 Tsara Kely Bot démarré sur le port ${PORT}));
+app.listen(PORT, () => console.log(`🌸 Tsara Kely Bot démarré sur le port ${PORT}`));
