@@ -6,6 +6,7 @@ app.use(express.json());
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN || "tsarakely_verify_2024";
+const usersGreeted = new Set();
 
 async function sendMessage(recipientId, text, quickReplies = null) {
   const message = { text };
@@ -37,11 +38,19 @@ const livraisonMenu = [
 async function handleMessage(senderId, text) {
   const t = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9\s]/g, " ");
 
-  if (t.includes("bonjour") || t.includes("salut") || t.includes("hello") || t.includes("bonsoir") || t.includes("hi")) {
-    await sendMessage(senderId,
-      `Bonjour et bienvenue chez Tsara Kely 🌸✨\n\nNous proposons des cache tétons discrets et élégants !\n\nVous pouvez cliquer sur les boutons en-dessous pour avoir plus d'informations. \n\nNos caches tétons sont disponibles actuellement. \n\nLa livraison se fait à J+1 de la commande 🌸`,
-      mainMenu
-    );
+if (!usersGreeted.has(senderId) || t.includes("bonjour") || t.includes("salut") || t.includes("hello") || t.includes("bonsoir") || t.includes("hi") || t.includes("menu") || t.includes("menu principal")) {
+    if (!usersGreeted.has(senderId)) {
+      usersGreeted.add(senderId);
+      await sendMessage(senderId,
+        Bonjour et bienvenue chez Tsara Kely 🌸✨\n\nNos cache tétons discrets et élégants vous attendent ! 💕\n\nCliquez sur les boutons en bas pour plus d'informations 👇,
+        mainMenu
+      );
+    } else {
+      await sendMessage(senderId,
+        Bonjour 🌸 Comment puis-je vous aider ?,
+        mainMenu
+      );
+    }
   } else if (t.includes("prix") || t.includes("cout") || t.includes("combien") || t.includes("tarif")) {
     await sendMessage(senderId,
       `🌸 Voici nos prix :\n\n• Cache tétons Rond — 7 000 Ar\n• Cache tétons Pétale de fleurs — 7 000 Ar\n\nTous réutilisables et très discrets 💕`,
@@ -74,7 +83,7 @@ async function handleMessage(senderId, text) {
     );
   } else if (t.includes("peripherie")) {
     await sendMessage(senderId,
-      `🌆 Zone Périphérie — 3 000 Ar\n\nAnkadikely Ilafy, Ambohimahitsy, Tanjombato Forello, Iavoloha, Anosizato, Itaosy, Talatamaty, Ivato Aéroport\n\n📦 Livraison à domicile · Emballage discret 💕`,
+      `🌆 Zone Périphérie — 4 000 Ar\n\nAnkadikely Ilafy, Ambohimahitsy, Tanjombato Forello, Iavoloha, Anosizato, Itaosy, Talatamaty, Ivato Aéroport\n\n📦 Livraison à domicile · Emballage discret 💕`,
       mainMenu
     );
   } else if (t.includes("paiement") || t.includes("payer") || t.includes("mvola") || t.includes("airtel") || t.includes("orange")) {
@@ -90,10 +99,18 @@ async function handleMessage(senderId, text) {
   } else if (t.includes("merci") || t.includes("parfait") || t.includes("super") || t.includes("ok")) {
     await sendMessage(senderId, `Avec plaisir ! 😊🌸 Bonne journée ! 💕`, mainMenu);
   } else {
-    await sendMessage(senderId,
-      `Merci pour votre message ! 🌸\n\nVous pouvez cliquer sur les boutons en-dessous pour avoir plus d'informations. \n\nNos caches tétons sont disponibles actuellement 🌸. `,
-      mainMenu
-    );
+    if (!usersGreeted.has(senderId)) {
+      usersGreeted.add(senderId);
+      await sendMessage(senderId,
+        Merci pour votre message ! 🌸\n\nVous pouvez cliquer sur les boutons en-dessous pour avoir plus d'informations. \n\nNos caches tétons sont disponibles actuellement 🌸.,
+        mainMenu
+      );
+    } else {
+      await sendMessage(senderId,
+        Vous pouvez cliquer sur les boutons en-dessous pour plus d'informations 👇,
+        mainMenu
+      );
+    }
   }
 }
 
