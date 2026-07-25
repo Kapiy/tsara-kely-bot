@@ -68,12 +68,12 @@ async function handleMessage(senderId, text) {
     );
   } else if (t.includes("livraison") || t.includes("livrer") || t.includes("expedition")) {
     await sendMessage(senderId,
-      `🚚 Livraison disponible à Antananarivo et en provinces !\n\nLa livraison se fait à J+1 de la commande 🌸\n\nChoisissez votre zone ci-dessous. Si votre zone n'apparaît pas dans la liste, nous vous répondrons dans les plus brefs délais `,
+      `🚚 Livraison disponible à Antananarivo et en provinces !\n\nLa livraison se fait à J+1 de la commande, hors dimanche 🌸\n\nChoisissez votre zone ci-dessous. Si votre zone n'apparaît pas dans la liste, nous vous répondrons dans les plus brefs délais `,
       livraisonMenu
     );
   } else if (t.includes("zone ville") || t.includes("ville")) {
     await sendMessage(senderId,
-      `🏙️ Zone Ville — 3 000 Ar\n\nAnalamahitsy, Androhibe, Mahazo, Mandroseza Pont, Saropody Pont, Tanjombato Pont, Ampasika, Andranomena, Soavimasoandro,...\n\n📦 Livraison à domicile · Emballage discret 💕`,
+      `🏙️ Zone Ville — 4 000 Ar\n\nAnalamahitsy, Androhibe, Mahazo, Mandroseza Pont, Saropody Pont, Ambohijatovo, Ampasika, Andranomena, 67ha, Soavimasoandro,...\n\n📦 Livraison à domicile · Emballage discret 💕`,
       mainMenu
     );
   } else if (t.includes("super") || t.includes("super peripherie")) {
@@ -88,7 +88,7 @@ async function handleMessage(senderId, text) {
     );
   } else if (t.includes("paiement") || t.includes("payer") || t.includes("mvola") || t.includes("airtel") || t.includes("orange")) {
     await sendMessage(senderId,
-      `💳 Modes de paiement :\n\n📱 MVola\n📱 Airtel Money\n📱 Orange Money\n💵 En main propre (Antananarivo)\n\nPaiement à la livraison ou à la confirmation si via Mobilemoney 🌸`,
+      `💳 Modes de paiement :\n\n📱 MVola\n📱 Airtel Money\n📱 Orange Money\n💵 En main propre (Antananarivo)\n\nPaiement à la livraison ou à la confirmation si via Mobilemoney (avec frais de retrait) 🌸`,
       mainMenu
     );
   } else if (t.includes("taille") || t.includes("dimension")) {
