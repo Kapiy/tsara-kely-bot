@@ -53,7 +53,7 @@ async function handleMessage(senderId, text) {
     }
   } else if (t.includes("prix") || t.includes("cout") || t.includes("combien") || t.includes("tarif")) {
     await sendMessage(senderId,
-      `🌸 Voici nos prix :\n\n• Cache tétons Rond — 7 000 Ar\n• Cache tétons Pétale de fleurs — 7 000 Ar\n\nTous réutilisables et très discrets 💕`,
+      `🌸 Voici nos prix :\n\n• Cache tétons Rond — 7 000 Ar\n• Cache tétons Pétale de fleurs — 7 000 Ar\n• Collier argenté 15 000ar\n• Collier doréé 20 000ar\n\nTous réutilisables et très discrets 💕`,
       mainMenu
     );
   } else if (t.includes("modele") || t.includes("collection") || t.includes("produit")) {
