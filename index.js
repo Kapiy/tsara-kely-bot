@@ -38,19 +38,12 @@ const livraisonMenu = [
 async function handleMessage(senderId, text) {
   const t = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9\s]/g, " ");
 
-  if (!usersGreeted.has(senderId) || t.includes("bonjour") || t.includes("salut") || t.includes("hello") || t.includes("bonsoir") || t.includes("hi") || t.includes("menu") || t.includes("menu principal")) {
-    if (!usersGreeted.has(senderId)) {
-      usersGreeted.add(senderId);
-      await sendMessage(senderId,
-        `Merci pour votre message ! 🌸\n\nVous pouvez cliquer sur les boutons en-dessous pour avoir plus d'informations.\n\nNos caches tétons sont disponibles actuellement 🌸.`,
-        mainMenu
-      );
-    } else {
-      await sendMessage(senderId,
-        `Bonjour 🌸 Comment puis-je vous aider ?`,
-        mainMenu
-      );
-    }
+  if (!usersGreeted.has(senderId)) {
+    usersGreeted.add(senderId);
+    await sendMessage(senderId,
+      `Merci pour votre message ! 🌸\n\nVous pouvez cliquer sur les boutons en-dessous pour avoir plus d'informations.\n\nNos caches tétons et colliers sont disponibles actuellement 🌸.`,
+      mainMenu
+    );
   } else if (t.includes("prix") || t.includes("cout") || t.includes("combien") || t.includes("tarif")) {
     await sendMessage(senderId,
       `🌸 Voici nos prix :\n\n• Cache tétons Rond — 7 000 Ar\n• Cache tétons Pétale de fleurs — 7 000 Ar\n• Collier argenté 15 000ar\n• Collier doréé 20 000ar`,
