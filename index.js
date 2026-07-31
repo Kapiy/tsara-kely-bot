@@ -58,7 +58,7 @@ async function handleMessage(senderId, text) {
     );
   } else if (t.includes("modele") || t.includes("collection") || t.includes("produit")) {
     await sendMessage(senderId,
-      `Nous avons 2 modèles 🌸\n\n⭕ Rond — discret, idéal sous toutes vos tenues\n🌺 Pétale de fleurs — élégant et féminin\n\nSilicone réutilisable, teintes chair et nude 💕`,
+      `Nous avons :\n\n🌺 Cache téton Rond — discret, idéal sous toutes vos tenues\n🌺 Cache téton Pétale de fleurs — élégant et féminin\n🌺 Collier doré plein et creux\n🌺 Collier argenté plein et creux\n\nSilicone réutilisable, couleur chair 💕`,
       mainMenu
     );
   } else if (t.includes("commander") || t.includes("acheter") || t.includes("commande")) {
