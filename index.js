@@ -99,10 +99,7 @@ async function handleMessage(senderId, text) {
   } else if (t.includes("merci") || t.includes("parfait") || t.includes("ok")) {
     await sendMessage(senderId, `Avec plaisir ! 😊🌸 Bonne journée ! 💕`, mainMenu);
   } else {
-    await sendMessage(senderId,
-      `Vous pouvez cliquer sur les boutons en-dessous pour plus d'informations 👇`,
-      mainMenu
-    );
+    await sendMessage(senderId, ``, mainMenu);
   }
 }
 
