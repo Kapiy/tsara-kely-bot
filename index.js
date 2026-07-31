@@ -41,7 +41,7 @@ async function handleMessage(senderId, text) {
   if (!usersGreeted.has(senderId)) {
     usersGreeted.add(senderId);
     await sendMessage(senderId,
-      `Merci pour votre message ! 🌸\n\nVous pouvez cliquer sur les boutons en-dessous pour avoir plus d'informations.\n\nNos caches tétons et colliers sont disponibles actuellement 🌸.`,
+      `Miarahaba oh! 🌸\n\nVous pouvez cliquer sur les boutons en-dessous pour avoir plus d'informations.\n\nNos caches tétons et colliers sont disponibles actuellement 🌸.`,
       mainMenu
     );
   } else if (t.includes("prix") || t.includes("cout") || t.includes("combien") || t.includes("tarif")) {
@@ -56,7 +56,7 @@ async function handleMessage(senderId, text) {
     );
   } else if (t.includes("commander") || t.includes("acheter") || t.includes("commande")) {
     await sendMessage(senderId,
-      `Pour commander 😊\n\n1️⃣ Choisissez votre modèle\n2️⃣ Envoyez-nous un message avec votre contact et lieu de livraison\n3️⃣ Confirmez quantité et adresse\n4️⃣ Recevez votre colis ! 🎁\n5️⃣ Effectuez le paiement`,
+      `Pour commander 😊\n\n1️⃣ Choisissez votre article\n2️⃣ Envoyez-nous un message avec votre contact et lieu de livraison\n3️⃣ Confirmez quantité et adresse\n4️⃣ Recevez votre colis ! 🎁\n5️⃣ Effectuez le paiement`,
       mainMenu
     );
   } else if (t.includes("livraison") || t.includes("livrer") || t.includes("expedition")) {
@@ -66,7 +66,7 @@ async function handleMessage(senderId, text) {
     );
   } else if (t.includes("zone ville") || t.includes("ville")) {
     await sendMessage(senderId,
-      `🏙️ Zone Ville — 4 000 Ar\n\nAnalamahitsy, Androhibe, Mahazo, Mandroseza Pont, Saropody Pont, Ambohijatovo, Ampasika, Andranomena, 67ha, Soavimasoandro,...\n\n📦 Livraison à domicile · Emballage discret 💕`,
+      `🏙️ Zone Ville — 4 000 Ar\n\nAnalamahitsy, Androhibe, Mahazo, Mandroseza Pont, Ambohijatovo, Ampasika, Andranomena, 67ha, Soavimasoandro,...\n\n📦 Livraison à domicile · Emballage discret 💕`,
       mainMenu
     );
   } else if (t.includes("super") || t.includes("super peripherie")) {
@@ -84,13 +84,13 @@ async function handleMessage(senderId, text) {
       `💳 Modes de paiement :\n\n📱 MVola\n📱 Airtel Money\n📱 Orange Money\n💵 En main propre (Antananarivo)\n\nPaiement à la livraison ou à la confirmation si via Mobilemoney (avec frais de retrait) 🌸`,
       mainMenu
     );
-  } else if (t.includes("taille") || t.includes("dimension")) {
+  } else if (t.includes("taille") || t.includes("matière")) {
     await sendMessage(senderId,
-      `Taille standard 🌸\n\n📏 Diamètre : 6 cm\n\nLe silicone s'adapte à toutes les morphologies 💕`,
+      `Taille cache téton :\n\n📏 Diamètre : 6 cm\n\n📏 Matière collier : acier inoxydable matevina tsara`,
       mainMenu
     );
   } else if (t.includes("merci") || t.includes("parfait") || t.includes("ok")) {
-    await sendMessage(senderId, `Avec plaisir ! 😊🌸 Bonne journée ! 💕`, mainMenu);
+    await sendMessage(senderId, `Avec plaisir ! 😊🌸 Bonne journée ! `, mainMenu);
   } else {
     await sendMessage(senderId, ``, mainMenu);
   }
